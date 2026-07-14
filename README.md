@@ -2,24 +2,19 @@
 
 ## 📌 What is this project?
 
-Prism is a web application that takes long-form text — pasted directly or uploaded as a `.txt` file — and generates a concise AI-written summary. It's built with [Streamlit](https://streamlit.io/) for the interface and connects to Hugging Face's hosted inference API to run the summarization model, so no model weights are downloaded or run locally.
+Prism is a web application that takes long-form text, pasted directly or uploaded as a `.txt` file, and generates a concise AI-written summary. It's built with [Streamlit](https://streamlit.io/) for the interface and connects to Hugging Face's hosted inference API to run the summarization model, so no model weights are downloaded or run locally.
 
 The name "Prism" reflects what the app does conceptually: it takes a large body of text and refracts it down into its essential signal, much like a prism splits light into its core components.
 
----
-
-<img width="400" height="279" alt="Screen Recording 2026-07-14 104337" src="https://github.com/user-attachments/assets/66762af0-bdf7-4c34-971c-904b0eddaa07" />
-
+<img width="400" height="279" alt="Screen Recording 2026-07-14 104337" src="https://github.com/user-attachments/assets/207fc03c-e785-4761-800e-7d050a9cdd94" />
 
 ## ⚙️ What does it do?
 
-- **Paste or upload text** — type directly into the text box, or upload a `.txt` file and have its contents load automatically.
-- **Generate an AI summary** — sends the text to Hugging Face's `facebook/bart-large-cnn` summarization model and displays the result.
-- **Control summary length** — a slider lets you set the maximum length of the generated summary before running it.
-- **View text analytics** — after summarizing, a dashboard shows the original word count, the summary word count, and how much the text was compressed, including a visual "retained volume" gauge.
-- **Download the summary** — a button lets you save the generated summary as a clean `.txt` file (`ai_summary.txt`).
-
----
+- **Paste or upload text:** type directly into the text box, or upload a `.txt` file and have its contents load automatically.
+- **Generate an AI summary:** sends the text to Hugging Face's `facebook/bart-large-cnn` summarization model and displays the result.
+- **Control summary length:** a slider lets you set the maximum length of the generated summary before running it.
+- **View text analytics:** after summarizing, a dashboard shows the original word count, the summary word count, and how much the text was compressed, including a visual "retained volume" gauge.
+- **Download the summary:** a button lets you save the generated summary as a clean `.txt` file (`ai_summary.txt`).
 
 ## 🧠 What I learned
 
@@ -49,7 +44,7 @@ summary = result[0]["summary_text"]
 ```
 
 ### 🎨 Styling Streamlit with custom CSS and HTML
-By default, Streamlit's widgets look fairly generic. I learned that `st.markdown()` can render raw HTML and CSS if you pass `unsafe_allow_html=True`, which let me define a custom color palette, typography, and layout using CSS variables, then apply it across the whole app — including overriding Streamlit's own built-in components like buttons and sliders.
+By default, Streamlit's widgets look fairly generic. I learned that `st.markdown()` can render raw HTML and CSS if you pass `unsafe_allow_html=True`, which let me define a custom color palette, typography, and layout using CSS variables, then apply it across the whole app, including overriding Streamlit's own built-in components like buttons and sliders.
 
 ```python
 st.markdown("""
@@ -65,8 +60,6 @@ This project uses `facebook/bart-large-cnn`, a summarization model from Meta ava
 
 I built and understood this project with the help of AI collaboration and Hugging Face's documentation, using it as a learning tool to understand how API-based AI integration, request/response handling, and custom UI styling work together in a real application.
 
----
-
 ## 💻 How to run this project
 
 ### 1. Clone the repository
@@ -75,26 +68,19 @@ git clone https://github.com/FreezerTheGod/Prism-AI-Text-Summarizer.git
 cd Prism-AI-Text-Summarizer
 ```
 
-### 2. Create a virtual environment (recommended)
+### 2. Install Streamlit
 ```bash
-python -m venv venv
-venv\Scripts\activate      # Windows
-source venv/bin/activate   # macOS/Linux
+pip install streamlit requests
 ```
 
-### 3. Install the dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Add your Hugging Face API token
+### 3. Add your Hugging Face API token
 Create a file at `.streamlit/secrets.toml` in the project root and add:
 ```toml
 HF_TOKEN = "your_hugging_face_token_here"
 ```
 You can generate a token from your [Hugging Face account settings](https://huggingface.co/settings/tokens). This file is listed in `.gitignore` and should never be committed to GitHub.
 
-### 5. Run the app
+### 4. Run the app
 ```bash
 streamlit run app.py
 ```
